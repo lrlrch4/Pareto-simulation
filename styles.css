@@ -1,0 +1,10 @@
+
+.exchange-button {
+    background-color: #0084ff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: box-shadow 0.3s; /* Agrega una transición para suavizar el efecto */
+}

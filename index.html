@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pareto distribution</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+</head>
+<body style="background: black;">
+    <div style = 'margin: 20px'>
+
+        <!-- <label for="iterationsSlider" style="color: white;">Iterations</label>
+        <input type="range" id="iterationsSlider" min="0" max="10" value="0" step="1" oninput="updateIterations(this.value)">
+        <span id="iterationsValue" style="color: white; margin-left: 10px;">0</span> -->
+        <div style='margin: 5px'>
+            <!-- Agrega un botón con un evento de clic asociado a ConnectAll() -->
+            <button class = "exchange-button" onclick="Button()">Exchange</button>
+        </div>
+    
+    </div>
+
+    <div>
+        <svg id="mySvg"></svg>
+        <svg id="mySvg2"></svg>
+    </div>
+    
+
+    <script src="Pareto.js"></script>    
+</body>
+</html>
