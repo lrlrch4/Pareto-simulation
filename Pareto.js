@@ -30,8 +30,8 @@ const circles = svg.selectAll("circle")
     .attr("cx", (d, i) => centerX + circleRadius * Math.cos((-2 * Math.PI * i) / numCircles))
     .attr("cy", (d, i) => centerY + circleRadius * Math.sin((-2 * Math.PI * i) / numCircles))
     .attr("r", 10)
-    .attr("id", (d, i) => 'c'+ i.toString()) // Identificador único para cada círculo
-    .style("fill", "#0084ff"); // Color de relleno del círculo
+    .attr("id", (d, i) => 'c'+ i.toString()) 
+    .style("fill", "#0084ff"); 
 
 //Create its labels
 const texts = svg.selectAll("text")

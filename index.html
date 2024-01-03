@@ -10,8 +10,8 @@
 
 </head>
 <body style="background: black;">
-    <h1 style="color: aliceblue;"> Money exchange simulation </h1>
-    <div style = 'margin: 10px'>
+    <h1 style="color: aliceblue; margin: 2px;"> Money exchange simulation </h1>
+    <div>
 
         <!-- <label for="iterationsSlider" style="color: white;">Iterations</label>
         <input type="range" id="iterationsSlider" min="0" max="10" value="0" step="1" oninput="updateIterations(this.value)">
@@ -33,7 +33,9 @@
     <script src = "Char.js"></script> 
     <script src = "ConnectAll.js"></script> 
 
-    <h2 style="color: aliceblue; font-size: 15px ;">Money exchange simulation. Each dot represents a person, (ci, x) its id and money acumulated respectively. The button starts an exchange and a line represent the random pairing. </h2>
+    <h2 style="color: aliceblue; font-size: 15px ;">
+        Money exchange simulation. Each dot represents a person, (ci, x) its id and money acumulated respectively. The button starts an exchange. A line connects the individuals who exchange. Each exchange, one wins a unitary unit and the other loses it. This process is random. On the right char, the money distribution accumulated is displayed.
+    </h2>
        
 </body>
 </html>
