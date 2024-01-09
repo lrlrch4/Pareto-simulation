@@ -10,24 +10,21 @@ svg2.append('rect')
 
 const moneyAxis = d3.scaleLinear()
     .domain([-100, 100])
-    .range([15, svgWidth-15]);
-
-svg2.append("g")
-    .attr("transform", `translate(${0},${0.9*svgHeight} )`)
-    .call(d3.axisBottom(moneyAxis).ticks(20))
-    .attr('color', 'white');
+    .range([.02*svgWidth, svgWidth*.98]);
 
 
-
+const dotsAxis = d3.scaleLinear()
+    .domain([0, numCircles - 1])
+    .range([.05*svgHeight, .93*svgHeight])
+    
+    
 const titleText = svg2.append('text')
-                    .text(`Money distribution char`)
-                    .attr('x',15)
-                    .attr('y',20)
-                    .attr('fill', 'white')
-                    .attr('id', 'iterations');
+    .text(`Money distribution char`)
+    .attr('x', 15)
+    .attr('y', 20)
+    .attr('fill', 'white')
+    .attr('id', 'iterations');
 
-
-const barScale = 5;
 
 const bars = svg2.selectAll('#bars')
     .data(circleData)
@@ -35,22 +32,12 @@ const bars = svg2.selectAll('#bars')
     .append('line')
     .attr('id', 'bars')
     .attr('x1', svgWidth/2)
-    .attr('y1', (d,i) => 50*(i+1))
+    .attr('y1', (d,i) => dotsAxis(i))
     .attr('x2', (d,i) => moneyAxis(moneyDistribution[i]))
-    .attr('y2', (d,i) => 50*(i+1))    
+    .attr('y2', (d,i) => dotsAxis(i))    
     .attr('stroke', '#0084ff')
-    .attr('stroke-width', 20); 
+    .attr('stroke-width', .75*(dotsAxis(1) - dotsAxis(0))  ); 
 
-
-const barsLabel = svg2.selectAll('#barslabel')
-    .data(circleData)
-    .enter()
-    .append('text')
-    .attr('id', 'barslabel')
-    .text((d,i) => `c${i}`)    
-    .attr('x', svgHeight/2)
-    .attr('y', (d, i) => 50*(i+0.7))
-    .attr('fill', 'white');
 
 const originLine = svg2.append('line')
     .attr('stroke', 'white')
@@ -60,4 +47,22 @@ const originLine = svg2.append('line')
     .attr('y2', svgHeight)
     .attr('opacity', .25)
     .attr('stroke-dasharray', '5,5');
+
+svg2.append("g")
+    .attr("transform", `translate(${0},${0.95*svgHeight} )`)
+    .call(d3.axisBottom(moneyAxis).ticks(20))
+    .attr('color', 'white');
+
+svg2.append("g")
+    .attr("transform", `translate(${svgWidth/2},${0} )`)
+    .call(
+        d3.axisLeft(dotsAxis)
+            .ticks(numCircles)
+            .tickFormat( 
+                (d,i) => {return `c${i}`}
+            )
+        )
+    .attr('color', 'white')
+    .attr('font-size', '5px');
+
 

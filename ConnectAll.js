@@ -42,16 +42,26 @@ function ConnectAll() {
             .attr("x2", xb)
             .attr("y2", yb)
             .attr("stroke", "white")
-            .attr("stroke-width", 2)
+            .attr("stroke-width", 1)
             .attr("opacity", .5);
 
         const r =  (Math.random() < 0.5) ? -1 : 1;
-        
+
+                
         moneyDistribution[a] +=  r;
         moneyDistribution[b] -=  r;
 
-        svg.select(`#t${a}`).text(`(c${a}, ${moneyDistribution[a]})`)   
-        svg.select(`#t${b}`).text(`(c${b}, ${moneyDistribution[b]})`)     
+        moneyText.select(`#money${a}`).text(`${moneyDistribution[a]} $`)
+        moneyText.select(`#money${b}`).text(`${moneyDistribution[b]} $`)
+        
+        if(r > 0){
+            svg.select(`#c${a}`).style('fill', '#0e5c00');
+            svg.select(`#c${b}`).style('fill', '#8a0000');
+        }
+        else{
+            svg.select(`#c${a}`).style('fill', '#8a0000');
+            svg.select(`#c${b}`).style('fill', '#0e5c00');
+        }
     }  
 
     console.log(moneyDistribution) 

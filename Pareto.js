@@ -12,9 +12,9 @@ svg.append('rect')
     .attr('fill', '#242424')
 
 // Configuración de los círculos
-const numCircles = 10;
+const numCircles = 100;
 
-const circleRadius = 200;
+const circleRadius = .43*svgWidth;
 const centerX = svgWidth / 2;
 const centerY = svgHeight / 2;
 const circleData = Array.from({ length: numCircles });
@@ -29,36 +29,44 @@ const circles = svg.selectAll("circle")
     .append("circle")
     .attr("cx", (d, i) => centerX + circleRadius * Math.cos((-2 * Math.PI * i) / numCircles))
     .attr("cy", (d, i) => centerY + circleRadius * Math.sin((-2 * Math.PI * i) / numCircles))
-    .attr("r", 10)
+    .attr("r", 8)
     .attr("id", (d, i) => 'c'+ i.toString()) 
     .style("fill", "#0084ff"); 
-
+    
 //Create its labels
 const texts = svg.selectAll("text")
     .data(circleData)
     .enter()
     .append("text")
-    .attr("x", (d, i) => centerX + 1.2*circleRadius * Math.cos((-2 * Math.PI * i) / numCircles))
-    .attr("y", (d, i) => centerY + 1.2*circleRadius * Math.sin((-2 * Math.PI * i) / numCircles))
-    .text((d, i) => `(c${i}, ${moneyDistribution[i]})`) // Texto que acompaña a cada círculo
+    .attr("x", (d, i) => centerX + circleRadius * Math.cos((-2 * Math.PI * i) / numCircles))
+    .attr("y", (d, i) => centerY + circleRadius * Math.sin((-2 * Math.PI * i) / numCircles))
+    .text((d, i) => `c${i}` )
     .attr("text-anchor", "middle")
     .attr("alignment-baseline", "middle")
     .attr("fill", "white")
-    .attr("id", (d, i) => 't'+ i.toString());
+    .attr("id", (d, i) => 't'+ i.toString())
+    .style('font-size', '7px');
+
+moneyText = svg.append('g')
+
+moneyText.selectAll('text')
+    .data(circleData)
+    .enter()
+    .append("text")
+    .attr("x", (d, i) => centerX + 1.065*circleRadius * Math.cos((-2 * Math.PI * i) / numCircles))
+    .attr("y", (d, i) => centerY + 1.065*circleRadius * Math.sin((-2 * Math.PI * i) / numCircles))
+    .text((d, i) => `${moneyDistribution[i]} $` )
+    .attr("text-anchor", "middle")
+    .attr("alignment-baseline", "middle")
+    .attr("fill", "white")
+    .attr("id", (d, i) => 'money'+ i.toString())
+    .style('font-size', '7px');
 
 var iterations = 0;
 
 const iterationsText = svg.append('text')
-                            .text(`Iterations: ${iterations}`)
-                            .attr('x',10)
-                            .attr('y',20)
-                            .attr('fill', 'white')
-                            .attr('id', 'iterations');
-
-
-
-
-
-
-
-
+    .text(`Iterations: ${iterations}`)
+    .attr('x',10)
+    .attr('y',20)
+    .attr('fill', 'white')
+    .attr('id', 'iterations');
