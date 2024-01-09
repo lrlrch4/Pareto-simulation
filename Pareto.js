@@ -12,7 +12,8 @@ svg.append('rect')
     .attr('fill', '#242424')
 
 // Configuración de los círculos
-const numCircles = 100;
+var numCircles = 50;
+
 
 const circleRadius = .43*svgWidth;
 const centerX = svgWidth / 2;
