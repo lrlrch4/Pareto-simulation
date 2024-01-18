@@ -1,5 +1,8 @@
-const svgWidth = 600;
-const svgHeight = 600;
+const sideBox = Math.min(.49*document.getElementById('svgContainer').offsetWidth, 
+.99*document.getElementById('svgContainer').offsetHeight)
+
+const svgWidth = sideBox;
+const svgHeight = sideBox;
 
 const svg = d3.select("#mySvg")
     .attr("width", svgWidth)
@@ -48,7 +51,7 @@ const texts = svg.selectAll("text")
     .attr("id", (d, i) => 't'+ i.toString())
     .style('font-size', '7px');
 
-moneyText = svg.append('g')
+const moneyText = svg.append('g')
 
 moneyText.selectAll('text')
     .data(circleData)
